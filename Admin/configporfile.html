@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/img%2FIcon.png?alt=media&token=d2a1df51-c7fe-4bb8-801c-1e982c49ce7d&_gl=1*1wwyo2*_ga*NjY2Nzc1NDgwLjE2OTQ1NjEzMTU.*_ga_CW55HF8NVT*MTY5ODAyMjQ3MS40MS4xLjE2OTgwMjYyNDUuMzYuMC4w">
+    <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/Admin/Admin.html">FoodShareApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">link</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+          <div class="col-md-8 m-auto">
+              <h2>Datos Usuario</h2>
+              <div class="form-group">
+                <label>Display Name</label>
+                <input type="text" id="txtDisplayName" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" id="txtnombre" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label>Apellido</label>
+                <input type="text" id="txtapellido" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label>Email Personal</label>
+                <input type="text" id="txtemail" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label>Descripcion</label>
+                <input type="text" id="txtdescripcion" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label> phone Number</label>
+                <input type="text" id="txtphoneNumber" class="form-control" />
+              </div>
+
+              
+              <div class="form-group">
+                <label>icon</label>
+                <img src="" id="imgFoto" width="150" height="150" class="d-block"  />
+                <input type="file" id="foto" accept="image/*" onchange="cambiarFoto(this)"   class="mt-2" />
+              </div>
+              <div class="form-group">
+                <input type="button" value="Editar" onclick="EditarPerfil()" class="btn btn-primary btn-block" />
+              </div>
+              </div>
+
+
+
+
+
+           <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> 
+           <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            
+           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+           <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+           <script src="/js/generic.js"></script>
+           <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+           <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+           <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+           <script src="/Admin/js/configporfile.js"></script>
+</body>
+</html>   
