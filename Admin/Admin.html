@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/img%2FIcon.png?alt=media&token=d2a1df51-c7fe-4bb8-801c-1e982c49ce7d&_gl=1*1wwyo2*_ga*NjY2Nzc1NDgwLjE2OTQ1NjEzMTU.*_ga_CW55HF8NVT*MTY5ODAyMjQ3MS40MS4xLjE2OTgwMjYyNDUuMzYuMC4w">
-    <title>Admin</title>
+    <title>suppliers</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary"style="width: 100%;">
@@ -16,6 +16,7 @@
           type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"
           style="font-size: 40px;margin-right: 10px;cursor: pointer;"
           ></ion-icon>
+          <img src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/img%2FIcon.png?alt=media&token=d2a1df51-c7fe-4bb8-801c-1e982c49ce7d&_gl=1*1wwyo2*_ga*NjY2Nzc1NDgwLjE2OTQ1NjEzMTU.*_ga_CW55HF8NVT*MTY5ODAyMjQ3MS40MS4xLjE2OTgwMjYyNDUuMzYuMC4w" style="max-width: 40px;max-height: 40px;">
           <a class="navbar-brand" href="/Admin/Admin.html">FoodShareApp</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -127,7 +128,7 @@
             <div class="modal-body" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
             <label>Photo front page</label>   
             <img id="idimgFronpage"  class="fron"class="d-block"/>  
-            <input type="file" id="fileimgFrontpage" accept="image/*"onchange="imgfronpage(this)"class="mt-2"/>
+            <input type="file" id="fileimgFrontpage" accept="image/*"onchange="imgfronpage(this)"class="mt-2" class="form-control limpiar"/>
             </div>
             <div class="modal-footer">
             <button type="button" id="btnCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -182,12 +183,14 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="lblTitulo"> New card</h5>
+              <h5 class="modal-title" id="lblTitulo">New card</h5>
               <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body"style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-              
-                <label>Product price:</label>
+              <label>please fill out all fields</label>
+                <label>Nombre:</label>
+                <input type="text" id="idnombre" class="form-control limpiar"/>
+                <label>Product price: $</label>
                 <input type="text" id="idProductprice" class="form-control limpiar"/>
                 <label>Description:</label>
                 <input type="text" id="idDrescription" class="form-control limpiar"/>
@@ -196,7 +199,7 @@
                 <label>photo card</label>
 
                 <img id="idimgcard" class="froncard" style="width: 250px;height: 250px;"/>
-                <input type="file" class="limpiar" id="fileImage" accept="image/*"  onchange="imgcard(this)"/>
+                <input type="file" class="limpiar" id="fileImagecard" accept="image/*"  onchange="imgcard(this)"/>
             </div>
             <div class="modal-footer">
               <button type="button" id="btnCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -211,49 +214,69 @@
       </div>
     </div>
 <!--carrusel-->
-<div id="carruselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="display: none;">
-    <div id="carousel-indicators" class="carousel-indicators"> 
-    </div>
-    <div id="carousel-inner" class="carousel-inner">
-    </div>
-    <button id="carousel-control-prev" class="carousel-control-prev" data-bs-target="#carruselExampleIndicators" data-bs-slide="prev" 
-    style="background-color:white;width: 50px; display: none;">
-      <ion-icon name="arrow-back-outline" aria-hidden="true"></ion-icon>
-      <span class="visually-hidden" >Anterior</span>
-    </button>
-    <button id="carousel-control-next" class="carousel-control-next" type="button" data-bs-target="#carruselExampleIndicators" data-bs-slide="next"
-    style="background-color:white; width: 50px; display: none;">
-      <ion-icon name="arrow-forward-outline"aria-hidden="true"></ion-icon>
-      <span class="visually-hidden">Siguiente</span>
-    </button>
-</div>
-<!--cards
-<ul class="cards" >
-    <li>
-      <div class="card" style="width: 18rem;">
-        <img src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/img%2Fcard.png?alt=media&token=d47df714-b5d2-4193-a6b7-da0cb65f1cd2&_gl=1*1xw9pz0*_ga*NjY2Nzc1NDgwLjE2OTQ1NjEzMTU.*_ga_CW55HF8NVT*MTY5ODMzNzE4NC40OC4xLjE2OTgzMzg2MDUuMjAuMC4w" class="card-img-top" alt="...">
-        <ion-icon name="heart-outline" 
-        id="Favorite"
-        style="cursor: pointer;
-        font-size: 30px;
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        "></ion-icon>
+
+  <div class="carousel">
+    <div id="carruselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="display: none;">
+      <div id="carousel-indicators" class="carousel-indicators"> 
+      </div>
+      <div id="carousel-inner" class="carousel-inner">
+      </div>
+      <button id="carousel-control-prev" class="carousel-control-prev" data-bs-target="#carruselExampleIndicators" data-bs-slide="prev" 
+      style="background-color:white;width: 50px; display: none;">
+        <ion-icon name="arrow-back-outline" aria-hidden="true"></ion-icon>
+        <span class="visually-hidden" >Anterior</span>
+      </button>
+      <button id="carousel-control-next" class="carousel-control-next" type="button" data-bs-target="#carruselExampleIndicators" data-bs-slide="next"
+      style="background-color:white; width: 50px; display: none;">
+        <ion-icon name="arrow-forward-outline"aria-hidden="true"></ion-icon>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+  </div>
+  </div>
+
+
+
+
+<div id="bodyCards" style="display: none;" >
+  <div id="cards" class="cards" >
+    <!--
+      <div class="card">
+        <img src="" class="card-img-top">
+        <ion-icon class="favorite" name="heart-outline" id="Favorite"></ion-icon>
         <div class="card-body">
-          <h5 class="card-title" style="color: #49a29e;">$ 3.990</h5>
+          <h5 class="card-title">$ 3.990</h5>
           <p class="card-text">PREMEZCLA DE BUÑUELOS QUICKSY 300 G X 1 UND</p>
-          <h6 style="color: #7ea787;">300 g (g a $ 9,97)</h6>
-          <button class="btn btn-primary"
-          style="width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-align: center;"
-          >Add<ion-icon name="cart-outline"></ion-icon></button>
+          <h6 class="h6">Date of Expiry:</h6>
+          <button class="btn btn-primary">Add<ion-icon name="cart-outline"></ion-icon></button>
         </div>
-      </div></li>
-  </ul>-->
+      </div>
+    -->
+      
+  </div>
+</div>
+<!--pir de pagina-->
+<div class="line">
+  <div class="proyectredes">
+    <h2 style="color: black;">FoodShareApp</h2>
+  <div class="iconos">
+    <ion-icon class="icon" name="logo-facebook"></ion-icon>
+    <ion-icon class="icon" name="logo-youtube" ></ion-icon>
+    <ion-icon class="icon"name="logo-github"></ion-icon>
+    <ion-icon class="icon"name="logo-instagram"></ion-icon>
+    <ion-icon class="icon"name="logo-firebase"></ion-icon>
+  </div>
+  </div>
+  <div class="persons">
+  <p>Maria Cristina Castro Cortes</p>
+  <P>Jefferson Alexander Rojas Silva</P>
+  <p>Fabio Arturo Antolinez Sastoque</p>
+  <p>Daniel Alejandro Guzman Lopera</p>
+ 
+  </div>
+
+  <img class="baricono" src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/img%2FIcon.png?alt=media&token=d2a1df51-c7fe-4bb8-801c-1e982c49ce7d&_gl=1*1wwyo2*_ga*NjY2Nzc1NDgwLjE2OTQ1NjEzMTU.*_ga_CW55HF8NVT*MTY5ODAyMjQ3MS40MS4xLjE2OTgwMjYyNDUuMzYuMC4w" >
+</div>  
+
   <!--Scripts-->
   <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> 
   <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
@@ -266,12 +289,13 @@
   <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
 
-<link rel="stylesheet" href="/Admin/css/Admin.css">
-<link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/Admin/css/admin.css">
+  <link rel="stylesheet" href="/style.css">
 <script src="/Admin/js/fronpage.js"></script>
+<script src="/Admin/js/cards.js"></script>
 <script src="/Admin/js/Admin.js"></script>
 </body>
-
+</html>
 
 
 

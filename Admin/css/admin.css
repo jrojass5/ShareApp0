@@ -7,19 +7,21 @@ body{
     width: 1200px; 
     height:380px;
     margin-top: 10px;
-
+ 
 .carousel-control-prev{
       /* Reduce el rango de acción de los botones. */
     position: absolute;
     top: 35%;
     border-radius:50%;
     height: 50px;
+    margin-left: 30px;
 }
 .carousel-control-next {
     position: absolute;
     top: 35%;
     border-radius:50%;
     height: 50px;
+    margin-right: 30px;
 }
 .carousel-control-prev,.carousel-control-next, ion-icon{
     color:#000000;
@@ -30,16 +32,15 @@ body{
 }
 .carousel-inner{
     display: flex;
-    align-items: center;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 100%;
-    height: 335px;
+    height: 335.3px;
 }
 .carousel-inner img {
 object-fit: contain;
-max-height: 335px;
-max-width: 1200px;
+max-height: 100%;
+max-width: 100%;
 }
 }
 .modal-body{
@@ -66,11 +67,57 @@ max-width: 1200px;
     }
     }
 }
-.cards{
-    display: flex;
-    justify-content: center;
-    list-style: none;    
-}
+
+.cards{ 
+        display: flex;
+        flex-direction: row;
+        list-style: none;  
+        .card{
+            width:200px;
+            height: 320px;
+            margin: 10px;
+            .card-img-top{
+                position: relative;
+                left: 20px;
+                width: 150px;
+                height: 150px;    
+            }
+            .favorite{
+                cursor: pointer;
+                font-size: 30px;
+                position: absolute;
+                right: 10px;
+                top: 10px;}
+            .card-body{
+                .card-title{
+                    color: #49a29e;
+                    font-size: 20px;
+                }
+                .card-text{
+                    height: 40px;
+                    font-size: 13px;
+                }
+                .h6{
+                    color: #7ea787;
+                    font-size: 12px;
+                }
+                .btn{
+                    width: 100%;
+                    height: 30px;
+                    background-color:  #49a29e;
+                    border:none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+        }
+        }  
+      
+         
+    }
+
+
 .offcanvas-body{
     display: flex;
     flex-direction: column;
@@ -81,7 +128,8 @@ max-width: 1200px;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height:auto; border-top: 1px solid #c4c0c0;
+        height:auto; 
+        border-top: 1px solid #c4c0c0;
     }
     .btn{
         width: 100%;
@@ -120,12 +168,47 @@ max-width: 1200px;
 #heart-icon.clicked {
     background-color: red; /* Cambia el fondo a rojo cuando se le dé clic */
 }
-@media(max-width: 700px){
+.line{
+    overflow: hidden;
+    height: 400px;
+    width: 90%;
+    border-top: 2px solid #c4c0c0;
+    .baricono{
+    position:relative;
+    width: 300px;
+    height: 300px;
+    left: 75%;
+    top: -80%;
+    }
+    .proyectredes{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100px;
+        .iconos{
+            .icon{
+                color: #000000;
+                margin: 10px;
+                font-size: 30px;
+             
+            }
+        }
+        
+    }
+    .persons{
+    
+        width: 300px;
+        height: 200px;
+    }
+}
+@media(max-width: 900px){
     .cards{
         display:grid;
     }
     .carousel{
-    display: none;
+      display: none;
     }
     .userphoto{
         display: flex;

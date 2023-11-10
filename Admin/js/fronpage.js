@@ -3,6 +3,7 @@ window.onload=function(){
     firebase.auth().onAuthStateChanged(res=>{
         verificarFrontpage();
         RemovefrontPage();
+        verificarcards();
     });
 }
 function imgfronpage(e) {
@@ -18,6 +19,13 @@ function imgfronpage(e) {
     };
     reader.readAsDataURL(file);
 }
+function cerrarPopup() {
+    // Código para cerrar tu cuadro modal o realizar otras acciones al cerrar.
+    
+
+}
+
+
 function guardarfrontpage() {
     var img = document.getElementById("fileimgFrontpage").files[0];
     var user = firebase.auth().currentUser;
@@ -58,10 +66,6 @@ function guardarfrontpage() {
     } else {
         alert("Debes iniciar sesión.");
     }
-}
-function cerrarPopup() {
-    // Código para cerrar tu cuadro modal o realizar otras acciones al cerrar.
-    console.log("Popup cerrado");
 }
 function verificarFrontpage() {
     // Obtener el ID del usuario actual

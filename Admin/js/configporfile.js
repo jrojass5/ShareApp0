@@ -38,7 +38,6 @@ function EditarPerfil(){
         var foto=objFoto.value;
         //Halla elegido un archivo
         if(foto!=null && foto!=""){
-        
             var ref= firebase.storage().ref("UserAdmin/"+displayName+"/"+"Photo icon"+objFoto.name);
             var archivo= objFoto.files[0];
             var refFoto=   ref.put(archivo);
