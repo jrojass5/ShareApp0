@@ -1,0 +1,278 @@
+  
+  
+   <!--   <ion-icon name="menu-outline"
+          type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"
+          style="font-size: 40px;margin-right: 10px;cursor: pointer;"
+          ></ion-icon>-->
+
+
+
+  <!--canvas de editpublic-->
+  <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel"
+  style="z-index: 9999;">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Control Panel</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!--todo lo de mi fuera del lienzo-->
+      <div class="editpublic">
+        <div class="fron"> 
+          <p>2.048 X 572 px</p>
+          <p>Frontpage</p>
+        </div>
+        <button type="button" class="btn btn-success"style="margin: 10px;"
+        data-toggle="modal" data-target="#Modalfrontpage">New frontpage</button>
+        <button type="button" class="btn btn-danger"style="margin: 10px; display:none;"
+        data-toggle="modal" data-target="#ModalRemovefrontpage" id="Button Delete frontpage" >Delete frontpage</button>
+      </div>
+      
+      <!--modal New frontpage 
+      <div class="modal fade" id="Modalfrontpage" tabindex="-1" role="dialog" aria-labelledby="ModalfrontpageLabel" 
+      aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" >
+            <div class="modal-header">
+              <h5 class="modal-title" id="lblTitulo"> New Front page</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <label>Photo front page</label>   
+            <img id="idimgFronpage"  class="fron"class="d-block"/>  
+            <input type="file" id="fileimgFrontpage" accept="image/*"onchange="imgfronpage(this)"class="mt-2" class="form-control limpiar"/>
+            </div>
+            <div class="modal-footer">
+            <button type="button" id="btnCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" onclick="guardarfrontpage()"class="btn btn-primary">Guardar</button>
+            </div>
+            <div class="alert alert-danger" id="alertaErrorCrearcard" role="alert" style="display: none;">
+            </div>
+          </div>
+        </div>
+      </div>
+     -->
+      <!---->
+      <!--modal Remove frontpage-->
+      <div class="modal fade" id="ModalRemovefrontpage" tabindex="-1" role="dialog" aria-labelledby="ModalfrontpageLabel" 
+      aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" >
+            <div class="modal-header">
+              <h5 class="modal-title" id="lblTitulo">Delete frontpage</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="modal-body-RemovefrontPage"  class="modal-body">           
+              <!-- se crear automaticamente
+                div class="RemovefrontPage">
+            <img  class="img" src="" alt="">
+              <ion-icon class="ion-icon" name="trash"></ion-icon>
+              </div>
+              -->
+            </div>
+            <div class="modal-footer">
+            <button type="button" id="btnCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          
+            </div>
+            <div class="alert alert-danger" id="alertaErrorCrearcard" role="alert" style="display: none;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---->
+<!--cards-->
+      <div class="editpublic"> 
+        <div class="fron" style="height: 150px; width: 150px;">
+          <p>500 X 500 px</p>
+          <p>Card</p>
+        </div>
+        <button type="button" class="btn btn-success"style="margin: 10px;"
+        data-toggle="modal" data-target="#Modalcard">New Card</button>
+
+        <button type="button" class="btn btn-danger"style="margin: 10px; display:none;"
+        data-toggle="modal" data-target="#ModalRemovecard" id="Button Delete cards" >Delete cards</button>
+
+      </div>
+      <!--
+      <div class="modal fade" id="Modalcard" tabindex="-1" role="dialog" aria-labelledby="ModalcardLabel" 
+      aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="lblTitulo">New card</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+              <label>please fill out all fields</label>
+                <label>Nombre:</label>
+                <input type="text" id="idnombre" class="form-control limpiar"/>
+                <label>Product price: $</label>
+                <input type="text" id="idProductprice" class="form-control limpiar"/>
+                <label>Description:</label>
+                <input type="text" id="idDrescription" class="form-control limpiar"/>
+                <label>Date of Expiry:</label>
+                <input type="date" id="idDateofExpiry" class="form-control limpiar"/>
+                <label>photo card</label>
+
+                <img id="idimgcard" class="froncard" style="width: 250px;height: 250px;"/>
+                <input type="file" class="limpiar" id="fileImagecard" accept="image/*"  onchange="imgcard(this)"/>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" onclick="guardarcard()" class="btn btn-primary">Guardar</button>
+            </div>
+            <div class="alert alert-danger" id="alertaErrorCrearcard" role="alert" style="display: none;">
+            </div>
+      
+          </div>
+        </div>
+        </div>
+        -->
+
+        <div class="modal fade" id="ModalRemovecard" tabindex="-1" role="dialog" aria-labelledby="ModalRemovecardLabel" 
+      aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="lblTitulo">Delete Card</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="modal-body-Removecard" class="modal-body" >             
+<!-- ver los card para eliminar-->
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" onclick="guardarcard()" class="btn btn-primary">Guardar</button>
+            </div>
+            <div class="alert alert-danger" id="alertaErrorCrearcard" role="alert" style="display: none;">
+            </div>
+      
+          </div>
+        </div>
+        </div>
+
+      </div>
+  </div>
+
+css---------------------------------
+.modal-body{
+    display: flex; justify-content: center; align-items: center; flex-direction: column;
+    .RemovefrontPage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 5px;
+    .img{
+            border-radius: 10px;
+            border: 1px solid #000000;
+            height: 100px;
+            width: 350px;
+            box-shadow: 0 0 12px 2px rgba(0, 0, 0, .1);
+        object-fit: contain;
+        max-height: 100px;
+        max-width: 350px;
+    }
+    .ion-icon{
+        font-size: 30px;
+        color: red;
+        cursor: pointer;
+    }
+    }
+
+
+    .Removecards{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 5px;
+    .img{
+            border-radius: 10px;
+            border: 1px solid #000000;
+            height: 150px;
+            width: 1500px;
+            box-shadow: 0 0 12px 2px rgba(0, 0, 0, .1);
+            object-fit: contain;
+            max-height: 150px;
+            max-width: 150px;
+    }
+    .ion-icon{
+        font-size: 30px;
+        color: red;
+        cursor: pointer;
+    }
+    }
+}
+.offcanvas-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .editpublic{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height:auto; 
+        border-top: 1px solid #c4c0c0;
+    }
+    .btn{
+        width: 100%;
+    }
+    .fron{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+            margin: 5px;
+            border-radius: 10px;
+            border: 1px solid #000000;
+            height: 100px;
+            width: 350px;
+            box-shadow: 0 0 12px 2px rgba(0, 0, 0, .1);
+        }
+} 
+
+
+----------
+function RemovefrontPage() {
+    // Obtener el ID del usuario actual
+    const userUid = firebase.auth().currentUser.uid;
+    // Obtener una referencia a la colección "Frontpage" del usuario actual
+    const collectionRef = firebase.firestore().collection("Usuarios").doc(userUid).collection("Frontpage");
+    // Crear un oyente para escuchar cambios en la colección
+    collectionRef.onSnapshot((snapshot) => {
+        if (snapshot.size > 0) {
+            document.getElementById("Button Delete frontpage").style.display = "block";
+            const numImages = snapshot.size;
+            for (let i = 1; i <= numImages; i++) {
+            // Obtener el primer documento de la colección
+            const docu = snapshot.docs[i - 1];
+            const imagurl = docu.data().url;
+            const imgUrl  = docu.data().url;
+            const imgRef = firebase.storage().refFromURL(imgUrl);
+            const  modalBody = document.querySelector('#modal-body-RemovefrontPage');
+            const bodyItem = document.createElement('div');
+            bodyItem.classList.add('RemovefrontPage');
+            const Img = document.createElement('img');
+            Img.classList.add('img');
+            Img.src = imagurl;
+            const ionicon=document.createElement('ion-icon');
+            ionicon.classList.add('ion-icon');
+            ionicon.setAttribute('name', 'trash');
+            ionicon.addEventListener('click',()=>{
+                imgRef.delete().then(() => {
+                    // Eliminar el documento de la colección después de eliminar la imagen de Cloud Storage
+                    collectionRef.doc(docu.id).delete();
+                    alert("ha sido eliminado exitosamente.");
+                }).catch(err => {
+                    alert(err);
+                });
+            });
+            bodyItem.appendChild(Img);
+            bodyItem.appendChild(ionicon);
+            modalBody.appendChild(bodyItem);    
+            }
+        }else{
+            document.getElementById("Button Delete frontpage").style.display = "none";
+        }
+    });
+}

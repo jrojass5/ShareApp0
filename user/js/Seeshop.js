@@ -1,8 +1,6 @@
 
 //------optener user id--------------------------------------------------------------------------------
 const userId = window.location.search.substring(1).split("=")[1];
-
-
 //para FrontPage---------------------------------------------------------------------------------------
 const collectionRef = firebase.firestore().collection("Usuarios").doc(userId).collection("Frontpage");
 // Crear un oyente para escuchar cambios en la colección
@@ -84,7 +82,6 @@ collectionRef.onSnapshot((snapshot) => {
   }
 });
 
-
 //para cards-------------------------------------------------------------------------------------------
 const collectionRefC = firebase.firestore().collection("Usuarios").doc(userId).collection("Cards");
 // Crear un oyente para escuchar cambios en la colección
@@ -100,7 +97,6 @@ collectionRefC.onSnapshot((snapshot) => {
             document.getElementById('bodyCards').appendChild(cardsDiv);
             // Mantener un índice de documento actual
             let currentDocumentIndex = 0;
-
             // Crear un bucle para iterar sobre los documentos
             for (let i = 0; i < Ndocuments; i++) {
                 if (currentDocumentIndex < 5) {
@@ -109,7 +105,9 @@ collectionRefC.onSnapshot((snapshot) => {
                     const Productpric = snapshot.docs[i].data().Productprice;
                     const Drescriptio = snapshot.docs[i].data().Drescription;
                     const DateofExpir = snapshot.docs[i].data().DateofExpiry;
-
+                    const idunit       =snapshot.docs[i].data().idunits;
+                    const cardId = snapshot.docs[i].id;
+                 
                     const card = document.createElement('div');
                     card.classList.add('card');
                     cardsDiv.appendChild(card);
@@ -117,34 +115,69 @@ collectionRefC.onSnapshot((snapshot) => {
                     img.classList.add('card-img-top');
                     img.src = imgurl;
                     card.appendChild(img);
-
                     const heartIcon = document.createElement('ion-icon');
                     heartIcon.classList.add('favorite');
                     heartIcon.name = 'heart-outline';
                     heartIcon.id = 'Favorite'+i;
                     card.appendChild(heartIcon);
+// Obtener la información del card desde el localStorage
+const storedCardInfoJSON = localStorage.getItem('cardInfo_' + i);
+// Si hay información almacenada, restaurar el estado del corazón y cualquier otra información que desees mostrar
+if (storedCardInfoJSON) {
+    const storedCardInfo = JSON.parse(storedCardInfoJSON);
 
-// Add event listener for the heart icon
-heartIcon.addEventListener('click', function () {
-    let isHeart = false;
-    if (heartIcon.name === 'heart-outline') {
+    // Restaurar el estado del corazón
+    if (storedCardInfo.isHeart) {
         heartIcon.setAttribute('name', 'heart');
         heartIcon.style.color = 'red';
-        isHeart = true;
-    } else {
-        heartIcon.setAttribute('name', 'heart-outline');
-        heartIcon.style.color = '';
-        isHeart = false;
     }
-    // Store the heart state in local storage
-    localStorage.setItem('isHeart_' + i, isHeart.toString()); // Store the heart state with a unique key for each icon
-});
-// Check local storage for the heart state
-const storedIsHeart = localStorage.getItem('isHeart_' + i);
-if (storedIsHeart === 'true') {
+
+    // Puedes acceder a otras propiedades del storedCardInfo para mostrar información adicional
+    // Por ejemplo: storedCardInfo.Productpric, storedCardInfo.Drescriptio, etc.
+    console.log(storedCardInfo.Drescriptio);
+}
+// Agregar un evento de clic al corazón
+heartIcon.addEventListener('click', function () {
+    // Cambiar el estado del corazón
+    let isHeart = !storedCardInfoJSON || !JSON.parse(storedCardInfoJSON).isHeart;
+    if (isHeart) {
     heartIcon.setAttribute('name', 'heart');
     heartIcon.style.color = 'red';
-}
+    var userClient=firebase.auth().currentUser.uid;
+    const doc = firebase.firestore().collection("Usuarios").doc(userClient).collection("favorites").doc(cardId);
+    doc.set({
+    imgurl: imgurl,
+    Productpric: Productpric,
+    Drescriptio: Drescriptio,
+    DateofExpir: DateofExpir,
+    idunit: idunit,
+    usersupplier:userId,
+    });
+    } else {
+      heartIcon.setAttribute('name', 'heart-outline');
+      heartIcon.style.color = '';
+      var userClient = firebase.auth().currentUser.uid;
+      const doc = firebase.firestore().collection("Usuarios").doc(userClient).collection("favorites").doc(cardId);
+    // Eliminamos el documento de la colección "favorites"
+    doc.delete().then(() => {
+    }).catch((error) => {
+        console.error("Error al eliminar el documento:", error);
+    });
+    }
+  
+    // Obtener la información del card
+    const cardInfo = {  
+      isHeart: isHeart
+    };
+    // Convertir el objeto a cadena JSON
+    const cardInfoJSON = JSON.stringify(cardInfo);
+    // Almacenar la información del card en el localStorage con una clave única para cada icono
+    localStorage.setItem('cardInfo_' + i, cardInfoJSON);
+    // Eliminar la información del localStorage si el corazón vuelve a su estado original
+    if (!isHeart) {
+      localStorage.removeItem('cardInfo_' + i);
+    }
+  });
                     // Info de la tarjeta
                     const cardinfo = document.createElement('div');
                     cardinfo.classList.add('card-body');
@@ -162,9 +195,11 @@ if (storedIsHeart === 'true') {
 
                     const h6 = document.createElement('h6');
                     h6.classList.add('h6');
-                    h6.textContent = DateofExpir;
+                    h6.textContent = 'Units:_'+idunit+'______'+DateofExpir;
                     cardinfo.appendChild(h6);
 
+                
+                        
                     // Botón
                     const button = document.createElement('button');
                     button.classList.add('btn', 'btn-primary');

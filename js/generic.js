@@ -1,13 +1,13 @@
-var firebaseConfig = { 
-apiKey: "AIzaSyD6aWPrJwzu0-Uo7vbFRq3cYsoEWywEQzU",
-authDomain: "shareapp-60048.firebaseapp.com",
-databaseURL: "https://shareapp-60048-default-rtdb.firebaseio.com",
-projectId: "shareapp-60048",
-storageBucket: "shareapp-60048.appspot.com",
-messagingSenderId: "704194173131",
-appId: "1:704194173131:web:b0917fb9049c67ab17234e",
-measurementId: "G-YG1EWKR08G"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyD6aWPrJwzu0-Uo7vbFRq3cYsoEWywEQzU",
+  authDomain: "shareapp-60048.firebaseapp.com",
+  databaseURL: "https://shareapp-60048-default-rtdb.firebaseio.com",
+  projectId: "shareapp-60048",
+  storageBucket: "shareapp-60048.appspot.com",
+  messagingSenderId: "704194173131",
+  appId: "1:704194173131:web:b0917fb9049c67ab17234e",
+  measurementId: "G-YG1EWKR08G"
+};
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 // Ejecutar la función verAutenticacion() cuando la página se carga
@@ -53,4 +53,3 @@ function verAutenticacion(){
       alert(err);
     })
   }
- 

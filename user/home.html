@@ -21,45 +21,69 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-1 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/user/home.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link active" aria-current="page" href="/user/Learn more.html">Learn more</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                style="display: flex;flex-direction: row; align-items: center;">
+                  My shopping<ion-icon name="pricetags-outline"style="font-size: 25px;"></ion-icon></a>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  
+                  <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">link</a></li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
 
-            <div></div>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                style="display: flex;flex-direction: row; align-items: center;">
+                My favorites<ion-icon name="heart-outline"style="font-size: 25px;"></ion-icon></a>
+                </a>
+                <ul  id="dropdownmenucards" class="dropdown-menu">
+                  <li><a class="dropdown-item">favorites</a></li>
+                  <li class="favoritecard">
+                    <img class="imgcard" src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/UserAdmin%2FTiendas%20D1%2FCards%2F12005770.png?alt=media&token=8c9c5871-925a-4f14-82a3-50b49dcd36e7" alt="">
+                    <div class="infocard">
+                      <p class="p">ARROZ ESTÁNDAR 2500G</p>
+                      <p class="p">$3.900</p>
+                      <p class="p">Por Tiendas D1</p>
+                      <p class="Delete">Delete</p>
+                    </div>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li class="favoritecard">
+                    <img class="imgcard" src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/UserAdmin%2FTiendas%20D1%2FCards%2F12005770.png?alt=media&token=8c9c5871-925a-4f14-82a3-50b49dcd36e7" alt="">
+                    <div class="infocard">
+                      <p class="p">ARROZ ESTÁNDAR 2500G</p>
+                      <p class="p">$3.900</p>
+                      <p class="p">Por Tiendas D1</p>
+                      <p class="Delete">Delete</p>
+                    </div>
+                  </li>
+                </ul>
+              </li>              
+            </ul>
+            
+            <form  id="searchForm" class="d-flex" role="search">
+              <input id="searchTermInput" class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+              <button class="btn" type="submit" style="background-color:#49a29e;color: white;">Search</button>
+            </form>
+       
 
             <div class="userphoto" style="margin-left: 30px;">
                   <label class="mr-2 text" id="lblNombreUsuario">user name</label>
                     <img 
                     id="imgFotoUsuario"
-                    style="cursor: pointer; border-radius: 50%;  border:white solid 1px;"
+                    style="cursor: pointer; border-radius: 50%;  border:rgb(0, 0, 0) solid 1px;"
                     src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/img%2FNoPhoto.png?alt=media&token=78808cbe-73a9-406a-b6fb-1be3a0b1075d&_gl=1*17vz50f*_ga*NjY2Nzc1NDgwLjE2OTQ1NjEzMTU.*_ga_CW55HF8NVT*MTY5NzgyNjgwMi4zMi4xLjE2OTc4MzM1OTIuNjAuMC4w" 
                     width="40" height="40"
                     data-bs-toggle="offcanvas" 
                     data-bs-target="#offcanvasScrolling" 
                     aria-controls="offcanvasScrolling"/>
             </div>
-            
           </div>
         </div>
       </nav>
@@ -95,13 +119,14 @@
         </div>
       </div>
 
+<div  id="bodyShops" class="bodyShops"style="display: none;">
+    <p class="pShops"><ion-icon name="storefront-outline"></ion-icon>The best stores await you...</p>
 
-      <div id="Shops"class="Shops" style="display: none;">
-        
-        <p class="pShops"><ion-icon name="storefront-outline"></ion-icon>The best stores await you</p>
-    </div>
+</div>
+<div id="bodyCards" style="display: none;" >
+</div>
   <!--pie de pagina-->
-  <div class="line">
+<div class="line">
     <div class="proyectredes">
       <h2 style="color: black;">FoodShareApp</h2>
     <div class="iconos">
@@ -121,8 +146,11 @@
     </div>
 
     <img class="baricono" src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/img%2FIcon.png?alt=media&token=d2a1df51-c7fe-4bb8-801c-1e982c49ce7d&_gl=1*1wwyo2*_ga*NjY2Nzc1NDgwLjE2OTQ1NjEzMTU.*_ga_CW55HF8NVT*MTY5ODAyMjQ3MS40MS4xLjE2OTgwMjYyNDUuMzYuMC4w" >
-  </div>  
+</div>  
 
+
+
+<!--Scripts -->
 <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> 
 <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -136,5 +164,6 @@
 <link rel="stylesheet" href="/user/css/home.css">
 <link rel="stylesheet" href="/Admin/css/admin.css">
 <script src="/user/js/home.js"></script>
+<script src="/user/js/Seeshop.js"></script>
 </body>
 </html>

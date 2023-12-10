@@ -3,11 +3,11 @@ body{
     flex-direction: column;
     align-items: center;
 }
+
 .slide {
     width: 1200px; 
     height:380px;
     margin-top: 10px;
- 
 .carousel-control-prev{
       /* Reduce el rango de acción de los botones. */
     position: absolute;
@@ -42,36 +42,21 @@ object-fit: contain;
 max-height: 100%;
 max-width: 100%;
 }
+.favorite{
+    cursor: pointer;
+    font-size: 30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: red;
 }
-.modal-body{
-    display: flex; justify-content: center; align-items: center; flex-direction: column;
-    .RemovefrontPage{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 5px;
-    .img{
-            border-radius: 10px;
-            border: 1px solid #000000;
-            height: 100px;
-            width: 350px;
-            box-shadow: 0 0 12px 2px rgba(0, 0, 0, .1);
-        object-fit: contain;
-        max-height: 100px;
-        max-width: 350px;
-    }
-    .ion-icon{
-        font-size: 30px;
-        color: red;
-        cursor: pointer;
-    }
-    }
 }
 
 .cards{ 
         display: flex;
         flex-direction: row;
-        list-style: none;  
+        list-style: none;    
+       
         .card{
             width:200px;
             height: 320px;
@@ -87,7 +72,9 @@ max-width: 100%;
                 font-size: 30px;
                 position: absolute;
                 right: 10px;
-                top: 10px;}
+                top: 10px;
+                color: red;
+            }
             .card-body{
                 .card-title{
                     color: #49a29e;
@@ -98,8 +85,14 @@ max-width: 100%;
                     font-size: 13px;
                 }
                 .h6{
+                    display: flex;
+                  
                     color: #7ea787;
                     font-size: 12px;
+                    .p{
+                        color: #7ea787;
+                        margin-left: 10px;
+                    }
                 }
                 .btn{
                     width: 100%;
@@ -113,27 +106,8 @@ max-width: 100%;
                 }
         }
         }  
-      
-         
     }
-
-
-.offcanvas-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .editpublic{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        height:auto; 
-        border-top: 1px solid #c4c0c0;
-    }
-    .btn{
-        width: 100%;
-    }
+.fade{
     .fron{
         display: flex;
         justify-content: center;
@@ -147,6 +121,7 @@ max-width: 100%;
             box-shadow: 0 0 12px 2px rgba(0, 0, 0, .1);
         }
 }  
+
 .listporfile{
     display: flex;
     width:100%; height:auto; border-top: 1px solid #c4c0c0;
@@ -198,7 +173,6 @@ max-width: 100%;
         
     }
     .persons{
-    
         width: 300px;
         height: 200px;
     }

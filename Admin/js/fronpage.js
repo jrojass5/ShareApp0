@@ -2,7 +2,6 @@ window.onload=function(){
     verAutenticacion();
     firebase.auth().onAuthStateChanged(res=>{
         verificarFrontpage();
-        RemovefrontPage();
         verificarcards();
     });
 }
@@ -24,8 +23,6 @@ function cerrarPopup() {
     
 
 }
-
-
 function guardarfrontpage() {
     var img = document.getElementById("fileimgFrontpage").files[0];
     var user = firebase.auth().currentUser;
@@ -95,7 +92,7 @@ function verificarFrontpage() {
                // Obtener el primer documento de la colección
                const doc = snapshot.docs[0];
                // Obtener la URL de la imagen
-               const imgUrl = doc.data().url
+               const imgUrl = doc.data().url;
                         // Obtener el elemento `carousel-inner`
                         const carouselInner = document.querySelector('.carousel-inner');
                         // Crear un nuevo elemento `carousel-item`
@@ -111,6 +108,24 @@ function verificarFrontpage() {
                         carouselItem.appendChild(img);
                         // Agregar el elemento `carousel-item` al elemento `carousel-inner`
                         carouselInner.appendChild(carouselItem);
+
+                        const docu = snapshot.docs[0];
+                        const imgrl  = docu.data().url;                       
+                        const imgRef = firebase.storage().refFromURL(imgrl);
+                        const ionicon=document.createElement('ion-icon');
+                        ionicon.classList.add('favorite');
+                        ionicon.setAttribute('name', 'trash');
+                        ionicon.addEventListener('click',()=>{
+                            imgRef.delete().then(() => {
+                                // Eliminar el documento de la colección después de eliminar la imagen de Cloud Storage
+                                collectionRef.doc(docu.id).delete();
+                                alert("ha sido eliminado exitosamente.");
+                            }).catch(err => {
+                                alert(err);
+                            });
+                        })
+                        carouselItem.appendChild(ionicon);
+                        
                         if (snapshot.size > 1) {
                             document.getElementById("carousel-control-prev").style.display = "block";
                             document.getElementById("carousel-control-next").style.display = "block";
@@ -141,6 +156,24 @@ function verificarFrontpage() {
                                 carouselItem.appendChild(img);
                                 // Agregar el elemento `carousel-item` al elemento `carousel-inner`
                                 carouselInner.appendChild(carouselItem);
+                               
+                                const docu = snapshot.docs[i - 1];
+                                const imgrl  = docu.data().url;                       
+                                const imgRef = firebase.storage().refFromURL(imgrl);
+                                const ionicon=document.createElement('ion-icon');
+                                ionicon.classList.add('favorite');
+                                ionicon.setAttribute('name', 'trash');
+                                ionicon.addEventListener('click',()=>{
+                                    imgRef.delete().then(() => {
+                                // Eliminar el documento de la colección después de eliminar la imagen de Cloud Storage
+                                collectionRef.doc(docu.id).delete();
+                                alert("ha sido eliminado exitosamente.");
+                            }).catch(err => {
+                                alert(err);
+                            });
+                        })
+                       
+                        carouselItem.appendChild(ionicon);
                             }             
                         }
             else{
@@ -149,49 +182,6 @@ function verificarFrontpage() {
         } else {
             // Si la colección no tiene documentos, establecer el estado del elemento "holamundo" en "none"
             document.getElementById("carruselExampleIndicators").style.display = "none";
-        }
-    });
-}
-function RemovefrontPage() {
-    // Obtener el ID del usuario actual
-    const userUid = firebase.auth().currentUser.uid;
-    // Obtener una referencia a la colección "Frontpage" del usuario actual
-    const collectionRef = firebase.firestore().collection("Usuarios").doc(userUid).collection("Frontpage");
-    // Crear un oyente para escuchar cambios en la colección
-    collectionRef.onSnapshot((snapshot) => {
-        if (snapshot.size > 0) {
-            document.getElementById("Button Delete frontpage").style.display = "block";
-            const numImages = snapshot.size;
-            for (let i = 1; i <= numImages; i++) {
-            // Obtener el primer documento de la colección
-            const docu = snapshot.docs[i - 1];
-            const imagurl = docu.data().url;
-            const imgUrl  = docu.data().url;
-            const imgRef = firebase.storage().refFromURL(imgUrl);
-            const  modalBody = document.querySelector('#modal-body-RemovefrontPage');
-            const bodyItem = document.createElement('div');
-            bodyItem.classList.add('RemovefrontPage');
-            const Img = document.createElement('img');
-            Img.classList.add('img');
-            Img.src = imagurl;
-            const ionicon=document.createElement('ion-icon');
-            ionicon.classList.add('ion-icon');
-            ionicon.setAttribute('name', 'trash');
-            ionicon.addEventListener('click',()=>{
-                imgRef.delete().then(() => {
-                    // Eliminar el documento de la colección después de eliminar la imagen de Cloud Storage
-                    collectionRef.doc(docu.id).delete();
-                    alert("ha sido eliminado exitosamente.");
-                }).catch(err => {
-                    alert(err);
-                });
-            });
-            bodyItem.appendChild(Img);
-            bodyItem.appendChild(ionicon);
-            modalBody.appendChild(bodyItem);    
-            }
-        }else{
-            document.getElementById("Button Delete frontpage").style.display = "none";
         }
     });
 }
