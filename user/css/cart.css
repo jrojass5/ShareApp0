@@ -1,0 +1,69 @@
+
+body{
+    flex-direction: column;
+    align-items: center;
+}
+.summary {
+    
+    margin-top: 20px;
+   
+    display: flex;
+    flex-direction: row;
+    .cardsinfo{
+       .products{
+        list-style: none;
+        margin-right: 50px;
+        .product{
+            display: flex;
+            margin: 10px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 500px;
+            .img{
+                border-radius: 20px;
+                margin-right: 10px;
+                width: 200px;
+                height: 200px;
+            }
+            .details{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .h{
+                    color: #49a29e;
+                }
+                .btn{
+                    width: 100px;
+                }
+
+            }
+        }
+       }
+    }
+    .resumen{
+        text-align: center;
+        .total{
+            .text{
+                display: flex;
+                flex-direction: row;
+                .left{
+                    display: flex;
+                    flex-direction: column;
+                    text-align: start;
+                }
+                .rigth{
+                    display: flex;
+                    flex-direction: column;
+                    text-align: end;
+                }
+            }
+            .ptotal{
+                font-size: 40px;
+                
+            }
+        }   
+        
+    }
+  }
+  
+ 

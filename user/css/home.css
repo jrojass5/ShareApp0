@@ -23,7 +23,7 @@ body{
     display: flex;
     align-items: center;
     width: 300px;
-    .imgcard{
+    .imgcardfavorite{
             
             left:10%;
             top: 83%;
@@ -44,6 +44,11 @@ body{
     }
 
 }
+#dropdownmenucardsfavorites {
+    max-height: 400px; /* Puedes ajustar la altura máxima según tus necesidades */
+    overflow-y: auto;
+  }
+  
 .bodyShops{
     .pShops{
         position: absolute;

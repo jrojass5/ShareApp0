@@ -23,46 +23,24 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/user/Learn more.html">Learn more</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/user/cart.html"
                 style="display: flex;flex-direction: row; align-items: center;">
-                  My shopping<ion-icon name="pricetags-outline"style="font-size: 25px;"></ion-icon></a>
-                </a>
-                <ul class="dropdown-menu">
-                  
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">link</a></li>
-                </ul>
+                My Cart
+                <ion-icon name="cart-outline" style="font-size: 25px;"></ion-icon>
+                
+              </a>
               </li>
 
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" id="faoritesCards">
                 <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                 style="display: flex;flex-direction: row; align-items: center;">
                 My favorites<ion-icon name="heart-outline"style="font-size: 25px;"></ion-icon></a>
                 </a>
-                <ul  id="dropdownmenucards" class="dropdown-menu">
+                <ul  id="dropdownmenucardsfavorites" class="dropdown-menu">
                   <li><a class="dropdown-item">favorites</a></li>
-                  <li class="favoritecard">
-                    <img class="imgcard" src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/UserAdmin%2FTiendas%20D1%2FCards%2F12005770.png?alt=media&token=8c9c5871-925a-4f14-82a3-50b49dcd36e7" alt="">
-                    <div class="infocard">
-                      <p class="p">ARROZ ESTÁNDAR 2500G</p>
-                      <p class="p">$3.900</p>
-                      <p class="p">Por Tiendas D1</p>
-                      <p class="Delete">Delete</p>
-                    </div>
-                  </li>
                   <li><hr class="dropdown-divider"></li>
-                  <li class="favoritecard">
-                    <img class="imgcard" src="https://firebasestorage.googleapis.com/v0/b/shareapp-60048.appspot.com/o/UserAdmin%2FTiendas%20D1%2FCards%2F12005770.png?alt=media&token=8c9c5871-925a-4f14-82a3-50b49dcd36e7" alt="">
-                    <div class="infocard">
-                      <p class="p">ARROZ ESTÁNDAR 2500G</p>
-                      <p class="p">$3.900</p>
-                      <p class="p">Por Tiendas D1</p>
-                      <p class="Delete">Delete</p>
-                    </div>
-                  </li>
                 </ul>
               </li>              
             </ul>
@@ -88,7 +66,7 @@
         </div>
       </nav>
 
-      <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
           <div class="userphoto">
               <img 
@@ -116,9 +94,15 @@
             Sign off 
             </button>
           </div>
+          <div class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/user/My shopping.html"
+            style="display: flex;flex-direction: row; align-items: center;">
+            My shopping
+            <ion-icon name="cart-outline"style="font-size: 25px;"></ion-icon>
+          </a>
+          </div>
         </div>
-      </div>
-
+</div>
 <div  id="bodyShops" class="bodyShops"style="display: none;">
     <p class="pShops"><ion-icon name="storefront-outline"></ion-icon>The best stores await you...</p>
 

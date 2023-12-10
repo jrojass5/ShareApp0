@@ -20,8 +20,6 @@ function imgfronpage(e) {
 }
 function cerrarPopup() {
     // Código para cerrar tu cuadro modal o realizar otras acciones al cerrar.
-    
-
 }
 function guardarfrontpage() {
     var img = document.getElementById("fileimgFrontpage").files[0];

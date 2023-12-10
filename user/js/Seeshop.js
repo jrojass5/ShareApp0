@@ -1,6 +1,14 @@
 
 //------optener user id--------------------------------------------------------------------------------
 const userId = window.location.search.substring(1).split("=")[1];
+
+if (userId) {
+const docRef = firebase.firestore().collection("Usuarios").doc(userId);
+docRef.get().then((doc) => {
+  // Si el documento existe, obtener el nombre de usuario
+  if (doc.exists) {
+    const userName = doc.data().displayName;
+    // Mostrar el nombre de usuario en la consola
 //para FrontPage---------------------------------------------------------------------------------------
 const collectionRef = firebase.firestore().collection("Usuarios").doc(userId).collection("Frontpage");
 // Crear un oyente para escuchar cambios en la colección
@@ -81,14 +89,15 @@ collectionRef.onSnapshot((snapshot) => {
       document.getElementById("carruselExampleIndicators").style.display = "none";
   }
 });
-
 //para cards-------------------------------------------------------------------------------------------
 const collectionRefC = firebase.firestore().collection("Usuarios").doc(userId).collection("Cards");
 // Crear un oyente para escuchar cambios en la colección
 collectionRefC.onSnapshot((snapshot) => {
     // Si la colección tiene documentos, establecer el estado del elemento "holamundo" en "block"
+    // Mostrar el nombre de usuario en la consola
     if (snapshot.size > 0) {
         document.getElementById("bodyCards").style.display = "block";
+        
             // Obtener el número de documentos
             const Ndocuments = snapshot.size;
             // Crear un div para los demás documentos
@@ -107,7 +116,6 @@ collectionRefC.onSnapshot((snapshot) => {
                     const DateofExpir = snapshot.docs[i].data().DateofExpiry;
                     const idunit       =snapshot.docs[i].data().idunits;
                     const cardId = snapshot.docs[i].id;
-                 
                     const card = document.createElement('div');
                     card.classList.add('card');
                     cardsDiv.appendChild(card);
@@ -121,7 +129,7 @@ collectionRefC.onSnapshot((snapshot) => {
                     heartIcon.id = 'Favorite'+i;
                     card.appendChild(heartIcon);
 // Obtener la información del card desde el localStorage
-const storedCardInfoJSON = localStorage.getItem('cardInfo_' + i);
+const storedCardInfoJSON = localStorage.getItem(cardId);
 // Si hay información almacenada, restaurar el estado del corazón y cualquier otra información que desees mostrar
 if (storedCardInfoJSON) {
     const storedCardInfo = JSON.parse(storedCardInfoJSON);
@@ -131,10 +139,6 @@ if (storedCardInfoJSON) {
         heartIcon.setAttribute('name', 'heart');
         heartIcon.style.color = 'red';
     }
-
-    // Puedes acceder a otras propiedades del storedCardInfo para mostrar información adicional
-    // Por ejemplo: storedCardInfo.Productpric, storedCardInfo.Drescriptio, etc.
-    console.log(storedCardInfo.Drescriptio);
 }
 // Agregar un evento de clic al corazón
 heartIcon.addEventListener('click', function () {
@@ -152,6 +156,7 @@ heartIcon.addEventListener('click', function () {
     DateofExpir: DateofExpir,
     idunit: idunit,
     usersupplier:userId,
+    Namesupplier:userName,
     });
     } else {
       heartIcon.setAttribute('name', 'heart-outline');
@@ -164,18 +169,18 @@ heartIcon.addEventListener('click', function () {
         console.error("Error al eliminar el documento:", error);
     });
     }
-  
     // Obtener la información del card
     const cardInfo = {  
-      isHeart: isHeart
+    isHeart: isHeart
     };
     // Convertir el objeto a cadena JSON
     const cardInfoJSON = JSON.stringify(cardInfo);
     // Almacenar la información del card en el localStorage con una clave única para cada icono
-    localStorage.setItem('cardInfo_' + i, cardInfoJSON);
+    localStorage.setItem(cardId, cardInfoJSON);
+    
     // Eliminar la información del localStorage si el corazón vuelve a su estado original
     if (!isHeart) {
-      localStorage.removeItem('cardInfo_' + i);
+      localStorage.removeItem(cardId);
     }
   });
                     // Info de la tarjeta
@@ -209,6 +214,22 @@ heartIcon.addEventListener('click', function () {
                     button.appendChild(icon);
                     cardinfo.appendChild(button);
 
+                    
+// Añadir evento click al botón
+button.addEventListener('click', function(event) {
+    var userClient=firebase.auth().currentUser.uid;
+    const doc = firebase.firestore().collection("Usuarios").doc(userClient).collection("mycarts").doc(cardId);
+    doc.set({
+    imgurl: imgurl,
+    Productpric: Productpric,
+    Drescriptio: Drescriptio,
+    DateofExpir: DateofExpir,
+    idunit: idunit,
+    usersupplier:userId,
+    Namesupplier:userName,
+    });
+    alert("added to cart: "+Drescriptio);
+  });
                     currentDocumentIndex++;
                 } else {
                     // Crear un nuevo div para los demás documentos
@@ -222,3 +243,7 @@ heartIcon.addEventListener('click', function () {
                    //}else{}    
          }
 });
+  }
+});
+}
+

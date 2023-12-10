@@ -2,6 +2,8 @@ window.onload=function(){
     verAutenticacion();
     firebase.auth().onAuthStateChanged(res=>{
     seeadmin();
+    favorites();
+  
     });
 }
 // Declara la variable `db`.
@@ -97,6 +99,7 @@ async function seeadmin() {
   }
 }
 const searchForm = document.getElementById('searchForm');
+
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault(); // Prevenir el envío predeterminado del formulario
 
@@ -167,6 +170,7 @@ searchForm.addEventListener('submit', async (event) => {
                     const Drescriptio = snapshot.docs[i].data().Drescription;
                     const DateofExpir = snapshot.docs[i].data().DateofExpiry;
                     const idunit       =snapshot.docs[i].data().idunits;
+                    const cardId = snapshot.docs[i].id;
                     const card = document.createElement('div');
                     card.classList.add('card');
                     cardsDiv.appendChild(card);
@@ -181,17 +185,15 @@ searchForm.addEventListener('submit', async (event) => {
                     card.appendChild(heartIcon);
 
 // Obtener la información del card desde el localStorage
-const storedCardInfoJSON = localStorage.getItem('cardInfo_' + i);
+const storedCardInfoJSON = localStorage.getItem(cardId);
 // Si hay información almacenada, restaurar el estado del corazón y cualquier otra información que desees mostrar
 if (storedCardInfoJSON) {
     const storedCardInfo = JSON.parse(storedCardInfoJSON);
-
     // Restaurar el estado del corazón
     if (storedCardInfo.isHeart) {
         heartIcon.setAttribute('name', 'heart');
         heartIcon.style.color = 'red';
     }
-
     // Puedes acceder a otras propiedades del storedCardInfo para mostrar información adicional
     // Por ejemplo: storedCardInfo.Productpric, storedCardInfo.Drescriptio, etc.
     console.log(storedCardInfo.Drescriptio);
@@ -212,6 +214,7 @@ heartIcon.addEventListener('click', function () {
     DateofExpir: DateofExpir,
     idunit: idunit,
     usersupplier:userId,
+    Namesupplier:userInfo.displayName,
     });
     } else {
       heartIcon.setAttribute('name', 'heart-outline');
@@ -232,10 +235,10 @@ heartIcon.addEventListener('click', function () {
     // Convertir el objeto a cadena JSON
     const cardInfoJSON = JSON.stringify(cardInfo);
     // Almacenar la información del card en el localStorage con una clave única para cada icono
-    localStorage.setItem('cardInfo_' + i, cardInfoJSON);
+    localStorage.setItem(cardId, cardInfoJSON);
     // Eliminar la información del localStorage si el corazón vuelve a su estado original
     if (!isHeart) {
-      localStorage.removeItem('cardInfo_' + i);
+      localStorage.removeItem(cardId);
     }
   });
                     // Info de la tarjeta
@@ -267,8 +270,23 @@ heartIcon.addEventListener('click', function () {
                     const icon = document.createElement('ion-icon');
                     icon.name = 'cart-outline';
                     button.appendChild(icon);
-                    cardinfo.appendChild(button);
-
+                   
+                    // Añadir evento click al botón
+button.addEventListener('click', function(event) {
+  var userClient=firebase.auth().currentUser.uid;
+  const doc = firebase.firestore().collection("Usuarios").doc(userClient).collection("mycarts").doc(cardId);
+  doc.set({
+  imgurl: imgurl,
+  Productpric: Productpric,
+  Drescriptio: Drescriptio,
+  DateofExpir: DateofExpir,
+  idunit: idunit,
+  usersupplier:userId,
+  Namesupplier:userInfo.displayName,
+  });
+  alert("Añadido al carrito: "+Drescriptio);
+});
+cardinfo.appendChild(button);
                     currentDocumentIndex++;
                 } else {
                     // Crear un nuevo div para los demás documentos
@@ -285,6 +303,75 @@ heartIcon.addEventListener('click', function () {
     }
   } 
 });
+
+function favorites(){
+  var userClient = firebase.auth().currentUser.uid;
+  const collectionRefC = firebase.firestore().collection("Usuarios").doc(userClient).collection("favorites");
+  collectionRefC.onSnapshot((snapshot) => {
+    if(snapshot.size > 0){
+      document.getElementById("faoritesCards").style.display = "block";
+      const Ncards = snapshot.size;
+      
+      for (let i = 0; i < Ncards; i++) {
+        let cardsli = document.createElement('li');
+      cardsli.classList.add('favoritecard');
+      document.getElementById('dropdownmenucardsfavorites').appendChild(cardsli);
+                    const imgurl = snapshot.docs[i].data().imgurl;
+                    const Productpric = snapshot.docs[i].data().Productpric;
+                    const Drescriptio = snapshot.docs[i].data().Drescriptio;
+                    const DateofExpir = snapshot.docs[i].data().DateofExpir;
+                    const idunit       =snapshot.docs[i].data().idunit;
+                    const Namedmin=snapshot.docs[i].data().Namesupplier;
+                    const cardId = snapshot.docs[i].id;
+                    const img = document.createElement('img');
+                    img.classList.add('imgcardfavorite');
+                    img.src = imgurl;
+                    cardsli.appendChild(img);
+                    const infocard= document.createElement('div');
+                    infocard.classList.add('infocard');
+                    cardsli.appendChild( infocard);
+                    //<p class="p">ARROZ ESTÁNDAR 2500G</p>
+                    const pDescrip=document.createElement('p');
+                    pDescrip.classList.add('p');
+                    pDescrip.textContent=Drescriptio;
+                    infocard.appendChild(pDescrip);
+                    const pprecie=document.createElement('p');
+                    pprecie.classList.add('p');
+                    pprecie.textContent=Productpric;
+                    infocard.appendChild(pprecie);
+                    const padmin=document.createElement('p');
+                    padmin.classList.add('p');
+                    padmin.textContent=Namedmin;
+                    infocard.appendChild(padmin);
+                    const pDelete=document.createElement('p');
+                    pDelete.classList.add('Delete');
+                    pDelete.textContent='Delete';
+                    pDelete.addEventListener('click', () => {
+                    const doc = firebase.firestore().collection("Usuarios").doc(userClient).collection("favorites").doc(cardId);
+                    // Eliminamos el documento de la colección "favorites"
+                    doc.delete().then(() => {
+                      localStorage.removeItem(cardId);
+                      alert("Eliminaste: "+Drescriptio+ ""+"de tus favoritos");
+                    }).catch((error) => {
+                        console.error("Error al eliminar el documento:", error);
+
+
+                    });
+                  });
+infocard.appendChild(pDelete);
+const liElement = document.createElement('li');
+const hrElement = document.createElement('hr');
+hrElement.classList.add('dropdown-divider');
+liElement.appendChild(hrElement);
+document.getElementById('dropdownmenucardsfavorites').appendChild(liElement);
+            
+      }
+  
+    }   
+  
+  });
+  
+}
 
 
 
